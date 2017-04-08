@@ -13,15 +13,15 @@
         h1 {
             font-size:40px;
         }
-        a {
+        .btn {
             text-decoration: none;
-        }
-        .center {
-            margin: 0 auto;
-        }
-        li {
-            list-style: none;
-            float: left;
+            display: inline-block;
+            background-color: #72b890;
+            color: white;
+            padding: 8px 8px;
+            margin-left: 18px;
+            border-radius: 3px;
+
         }
         .clearfix::after {
             content: "";
@@ -29,14 +29,24 @@
             clear: both;
         }
         .project{
-            display: inline-block;
-            background-color: #72b890;
-            color: white;
-            padding: 8px 10px;
-            border-radius: 3px;
-            margin-left: 20px;
+            width: 400px;
+            margin:0 auto;
+            text-align: right;
         }
-        a:hover {
+        .footer p {
+            display: inline-block;
+        }
+
+        .me {
+            text-decoration: none;
+            color: blue;
+            opacity: 0.7;
+        }
+        img{
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+        .btn:hover {
             opacity: 0.8;
         }
         .no1:link {
@@ -48,28 +58,26 @@
     </style>
 </head>
 <body>
-<div class="header center">
+<div class="header">
     <h1>我的项目</h1>
     <p>一句话介绍</p>
-    <ul class="clearfix">
-        <li><a href="#" class="project no1">项目一</a></li>
-        <li><a href="#" class="project">项目二</a></li>
-        <li><a href="#" class="project">项目三</a></li>
-        <li><a href="#" class="project">项目四</a></li>
-        <li><a href="#" class="project">项目五</a></li>
-    </ul>
+    <div class="clearfix project">
+        <a href="#" class="btn no1">项目一</a>
+        <a href="#" class="btn">项目二</a>
+        <a href="#" class="btn">项目三</a>
+        <a href="#" class="btn">项目四</a>
+        <a href="#" class="btn">项目五</a>
+    </div>
 </div>
-<div class="content center">
+<div class="content">
     <div class="center">
         <img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/65d4aba2-a097-4b24-aaa0-ebbaf7eedab2" alt="">
     </div>
     <div class="clearfix">
-        <ul>
-            <li><a href="#" class="project">查看源码</a></li>
-            <li><a href="#" class="project">使用说明</a></li>
-        </ul>
+        <a href="#" class="btn">查看源码</a>
+        <a href="#" class="btn">使用说明</a>
     </div>
 </div>
-<div class="footer center"><p>作者：我</p></div>
+<div class="footer center"><p>作者:</p><a href="#" class="me">我</a></div>
 </body>
 </html>
