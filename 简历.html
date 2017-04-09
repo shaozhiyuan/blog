@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
+        body, p, span, label,
+        h1, h2, h3, h4, h5, ul, ol, li{
+            margin: 0;
+            padding: 0;
+        }
        body {
            width: 900px;
-           height: 1300px;
+           /*height: 1300px;*/
            border: 1px solid #000;
            margin: 0 auto;
            box-shadow: 3px 5px 5px 3px #888888;
@@ -18,7 +23,7 @@
        }
         .header{
             height: 300px;
-            background-color: red;
+            /*background-color: red;*/
         }
         .head-name{
             display: inline-block;
@@ -68,21 +73,23 @@
             vertical-align: middle;
             margin-left: 150px;
         }
-        .contacts p{
-            margin-bottom: 0;
-        }
-        .contacts div {
+        .contacts p::after {
+            content: "";
+            display: block;
             width: 279px;
             border: 3px solid #000;
             margin: 0;
         }
-        .contacts ul {
-            margin-left: -40px;
+        ul {
+            margin-top: 10px;
+        }
+        li {
+            padding: 3px;
         }
         .experience {
-            height: 400px;
-            background-color: blue;
-            padding: 5px 30px;
+            /*height: 400px;*/
+            /*background-color: blue;*/
+            padding: 30px 30px;
         }
         h2::after {
             content: "";
@@ -95,6 +102,7 @@
             margin-left: 50px;
             margin-right: 30px;
             position: relative;
+            padding: 10px;
         }
         .work::before {
             content: "";
@@ -105,8 +113,7 @@
             border-radius: 50%;
             float: left;
             position: absolute;
-            left: -58px;
-            top: 18px;
+            left: -35px;
         }
         .work::after {
             content: "";
@@ -115,21 +122,22 @@
             border: 1px solid #000;
             float: left;
             position: absolute;
-            left: -53px;
-            top: 20px;
+            left: -31px;
+            top: 15px;
+
         }
         .education{
-            height: 300px;
-            background-color: pink;
-            padding: 5px 30px;
+            /*height: 300px;*/
+            /*background-color: pink;*/
+            padding: 30px 30px;
         }
         .activities{
-            background-color: green;
-            height: 300px;
+            /*background-color: green;*/
             width: 380px;
             display: inline-block;
-            padding: 5px 30px;
-            border: 1px solid #000;
+            padding: 30px 30px;
+            /*border: 1px solid #000;*/
+            vertical-align: top;
         }
         .act {
             display: inline-block;
@@ -146,25 +154,59 @@
             border-radius: 50%;
             float: left;
             position: absolute;
-            left: -58px;
-            top: 18px;
+            left: -45px;
         }
         .act::after {
             content: "+";
             display: inline-block;
             position: absolute;
-            left: -57px;
-            top: 12px;
+            left: -44px;
+            top: -3px;
             font-size: 20px;
         }
         .skills{
             display: inline-block;
             width: 440px;
-            height: 300px;
-            background-color: #54ffd5;
-            border: 3px solid #000;
-            padding: 5px 30px;
+            /*background-color: #54ffd5;*/
+            /*border: 3px solid #000;*/
+            padding: 30px 30px;
             box-sizing: border-box;
+        }
+        .skills ul li{
+            height: 40px;
+            display: inline-block;
+            float: left;
+            margin-left: 30px;
+            margin-right: 40px;
+            position: relative;
+        }
+        .ski::before {
+            content: "";
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            border: 1px solid #000;
+            border-radius: 50%;
+            float: left;
+            position: absolute;
+            left: -30px;
+        }
+        .ski::after {
+            content: "+";
+            display: inline-block;
+            position: absolute;
+            left: -29px;
+            top: -3px;
+            font-size: 20px;
+        }
+        h2 {
+            line-height: 30px;
+        }
+        p {
+            margin-bottom: 10px;
+        }
+        span {
+            opacity: 0.4;
         }
     </style>
 </head>
@@ -182,7 +224,6 @@
     </div>
     <div class="contacts">
         <p><strong>CONTACTS</strong></p>
-        <div></div>
         <ul>
             <li>A 我的基本信息sdasdasdasdas</li>
             <li>B 我的基本信息dsadasdasds</li>
@@ -217,12 +258,12 @@
     <div class="skills">
         <h2>SKILLS</h2>
         <ul>
-            <li>本科/2013-1017</li>
-            <li>本科/2013-1017</li>
-            <li>本科/2013-1017</li>
-            <li>本科/2013-1017</li>
-            <li>本科/2013-1017</li>
-            <li>本科/2013-1017</li>
+            <li class="ski">本科/2013-1017</li>
+            <li class="ski">本科/2013-1017</li>
+            <li class="ski">本科/2013-1017</li>
+            <li class="ski">本科/2013-1017</li>
+            <li class="ski">本科/2013-1017</li>
+            <li class="ski">本科/2013-1017</li>
         </ul>
     </div>
 </div>
