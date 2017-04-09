@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+       body {
+           width: 900px;
+           height: 1300px;
+           border: 1px solid #000;
+           margin: 0 auto;
+           box-shadow: 3px 5px 5px 3px #888888;
+           font-size:14px;
+           font-family: "Microsoft YaHei";
+       }
+       li {
+           list-style: none;
+       }
+        .header{
+            height: 300px;
+            background-color: red;
+        }
+        .head-name{
+            display: inline-block;
+        }
+        .circle{
+            width: 130px;
+            height: 130px;
+            margin-top: 60px;
+            margin-left: 50px;
+            font-size: 20px;
+            border-radius: 50%;
+            display: inline-block;
+            position: relative;
+            color: white;
+            background-color: black;
+        }
+        .D{
+            position: absolute;
+            top: 30%;
+            left: 30%;
+        }
+        .S{
+            position: absolute;
+            top: 55%;
+            left: 55%;
+        }
+        .circle::before {
+            content: "";
+            display: inline-block;
+            width: 60px;
+            margin-left:35px;
+            margin-top: 64px;
+            border: 1px solid #ffffff;
+            transform: rotateZ(-45deg);
+        }
+        .name {
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 30px;
+        }
+        h1{
+            margin-bottom: 0;
+            font-size: 40px;
+        }
+        .contacts {
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 150px;
+        }
+        .contacts p{
+            margin-bottom: 0;
+        }
+        .contacts div {
+            width: 280px;
+            border: 3px solid #000;
+            margin: 0;
+        }
+        .contacts ul {
+            margin-left: -40px;
+        }
+        .experience {
+            height: 400px;
+            background-color: blue;
+            padding: 5px 30px;
+        }
+        h2::after {
+            content: "";
+            display: block;
+            width: 300px;
+            border: 1px solid rgba(0,0,0,0.5);
+        }
+        .work {
+            display: inline-block;
+            margin-left: 50px;
+            margin-right: 30px;
+            position: relative;
+        }
+        .work::before {
+            content: "";
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background-color: black;
+            border-radius: 50%;
+            float: left;
+            position: absolute;
+            left: -58px;
+            top: 18px;
+        }
+        .work::after {
+            content: "";
+            display: inline-block;
+            height: 100%;
+            border: 1px solid #000;
+            float: left;
+            position: absolute;
+            left: -53px;
+            top: 20px;
+        }
+        .education{
+            height: 300px;
+            background-color: pink;
+            padding: 5px 30px;
+        }
+        .activities{
+            background-color: green;
+            height: 300px;
+            width: 380px;
+            display: inline-block;
+            padding: 5px 30px;
+            border: 1px solid #000;
+        }
+        .act {
+            display: inline-block;
+            margin-left: 50px;
+            margin-right: 30px;
+            position: relative;
+        }
+        .act::before {
+            content: "";
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            border: 1px solid #000;
+            border-radius: 50%;
+            float: left;
+            position: absolute;
+            left: -58px;
+            top: 18px;
+        }
+        .act::after {
+            content: "+";
+            display: inline-block;
+            position: absolute;
+            left: -57px;
+            top: 12px;
+            font-size: 20px;
+        }
+        .skills{
+            display: inline-block;
+            width: 440px;
+            height: 300px;
+            background-color: #54ffd5;
+            border: 3px solid #000;
+            padding: 5px 30px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="head-name">
+        <div class="circle">
+            <span class="D">D</span>
+            <span class="S">S</span>
+        </div>
+        <div class="name">
+            <h1>David Smith</h1>
+            <p><strong>前端开发师</strong></p>
+        </div>
+    </div>
+    <div class="contacts">
+        <p><strong>CONTACTS</strong></p>
+        <div></div>
+        <ul>
+            <li>A 我的基本信息sdasdasdasdas</li>
+            <li>B 我的基本信息dsadasdasds</li>
+            <li>C 我的基本信息asdasdasd</li>
+            <li>D 我的基本信息</li>
+        </ul>
+    </div>
+</div>
+<div class="experience">
+    <h2>WORK EXOERIENCE</h2>
+    <ul>
+        <li class="work"><p>本科/<span>2013-1017</span></p>副词、形容词经常作状语，表时间、处所的名词经常作状语，一般名词不作状语。动词中除助动词外，一般动词很少作状语，介词短语常作状语。一般状语紧连在中心高速的前边，但表时间、处所、目的的名词或介词短语作状语时，可以放在主语的前边但表时间、处所、目的的名词或介词短语作状语时，可以放在主语的前边但表时间、处所、目的的名词或介词短语作状语时，可以放在主语的前边</li>
+        <li class="work"><p>本科/<span>2013-1017</span></p>副词、形容词经常作状语，表时间、处所的名词经常作状语，一般名词不作状语。动词中除助动词外，一般动词很少作状语，介词短语常作状语。一般状语紧连在中心高速的前边，但表时间、处所、目的的名词或介词短语作状语时，可以放在主语的前边</li>
+        <li class="work"><p>本科/<span>2013-1017</span></p>副词、形容词经常作状语，表时间、处所的名词经常作状语，一般名词不作状语。动词中除助动词外，一般动词很少作状语，介词短语常作状语。一般状语紧连在中心高速的前边，但表时间、处所、目的的名词或介词短语作状语时，可以放在主语的前边</li>
+    </ul>
+</div>
+<div class="education">
+    <h2>EDUCATION</h2>
+    <ul>
+        <li class="work"><p>本科/<span>2013-1017</span></p>副词、形容词经常作状语，表时间、处所的名词经常作状语，一般名词不作状语。动词中除助动词外，一般动词很少作状语，介词短语常作状语。一般状语紧连在中心高速的前边，但表时间、处所、目的的名词或介词短语作状语时，可以放在主语的前边</li>
+        <li class="work"><p>本科/<span>2013-1017</span></p>副词、形容词经常作状语，表时间、处所的名词经常作状语，一般名词不作状语。动词中除助动词外，一般动词很少作状语，介词短语常作状语。一般状语紧连在中心高速的前边，但表时间、处所、目的的名词或介词短语作状语时，可以放在主语的前边</li>
+    </ul>
+</div>
+<div class="footer">
+    <div class="activities">
+        <h2>ACTIVITIES</h2>
+        <ul>
+            <li class="act"><p>本科/<span>2013-1017</span></p>副词、形容词经常作状语，表时间、处所的名词经常作状语，</li>
+            <li class="act"><p>本科/<span>2013-1017</span></p>副词、形容词经常作状语，表时间、处所的名词经常作状语，</li>
+        </ul>
+    </div>
+    <div class="skills">
+        <h2>SKILLS</h2>
+        <ul>
+            <li>本科/2013-1017</li>
+            <li>本科/2013-1017</li>
+            <li>本科/2013-1017</li>
+            <li>本科/2013-1017</li>
+            <li>本科/2013-1017</li>
+            <li>本科/2013-1017</li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
