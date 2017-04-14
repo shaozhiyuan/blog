@@ -270,31 +270,35 @@
             background-size:cover;
         }
         .register-wrap {
-            width: 500px;
-            display: inline-block;
-            vertical-align: top;
+            width: 50%;
             margin-top: 50px;
-            margin-right: 10px;
+        }
+        .rin {
+            float: left;
         }
         .text {
             width: 500px;
             height: 50px;
-            margin-top: 20px;
             border-radius: 5px;
             font-size: 20px;
-            padding-left: 10px;
-            padding-right: 10px;
+            margin-bottom: 30px;
+            padding: 10px;
+            box-shadow: 0 3px 3px rgba(0,0,0,0.4);
+        }
+        .lin {
+            float: right;
         }
         textarea {
-            display: inline-block;
+            height: 210px;
             width: 500px;
-            height: 190px;
-            margin-top: 70px;
-            margin-left: 10px;
-            border-radius: 3px;
+            border-radius: 5px;
             font-size: 20px;
-            padding: 10px;
+            margin-bottom: 26px;
+            display: inline-block;
+            padding: 20px;
+            box-shadow: 0 3px 3px rgba(0,0,0,0.4);
         }
+
         .btn {
             padding: 20px 40px;
             margin-top: 50px;
@@ -468,13 +472,17 @@
     <h1>CONTACT US</h1>
     <p>Lorem ipsum dolor sit amet consectetur.</p>
     <form action="">
-        <div class="register-wrap">
-            <input type="text" class="text" placeholder="your name">
-            <input type="text" class="text" placeholder="your name">
-            <input type="text" class="text" placeholder="your name">
+        <div class="clearfix">
+            <div class="register-wrap rin">
+                <input type="text" class="text" placeholder="your name">
+                <input type="text" class="text" placeholder="your name">
+                <input type="text" class="text" placeholder="your name">
+            </div>
+            <div class="register-wrap lin">
+                <textarea name="" id="" cols="30" rows="50" placeholder="your message"></textarea>
+            </div>
         </div>
-        <textarea name="" id="" cols="30" rows="50" placeholder="your message"></textarea>
-        <a href="#header" class="btn">SEND MESSAGE</a>
+        <div><a href="#header" class="btn">SEND MESSAGE</a></div>
     </form>
 </div>
 </body>
