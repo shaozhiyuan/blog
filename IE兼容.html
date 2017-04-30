@@ -1,0 +1,30 @@
+<script>
+
+    function getTarget() {
+        return node.target || node.srcElement ;
+    }
+    function bindEvent(node,type,handler) {
+        if(node.addEventListener()){
+            node.addEventListener(type,handler);
+        }else{
+            node['e' + type + handler] = handler;
+            node[type + handler] = function() {
+                node['e' + type + handler](window.event);
+            };
+            node.attachEvent('on' + type, node[type + handler]);
+            return true;
+        }
+    }
+    function removeEvent(node, type, handler) {
+        if (!node) return false;
+        if (node.removeEventListener) {
+            node.removeEventListener(type, handler, false);
+            return true;
+        }
+        else if (node.detachEvent) {
+            node.detachEvent('on' + type, node[type + handler]);
+            node[type + handler] = null;
+        }
+        return false;
+    }
+</script>
