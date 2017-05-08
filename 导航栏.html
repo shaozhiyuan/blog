@@ -17,14 +17,22 @@
             background-color: red;
             color: white;
         }
+        span {
+            position: absolute;
+            right: 10px;
+        }
 
         .level1>li {
+            position: relative;
             line-height: 35px;
             border-bottom:1px solid rgba(255,255,255,0.4);
             cursor: pointer;
-            position: relative;
+
         }
         .level2 {
+            display: none;
+        }
+        .active.level2 {
             display: block;
             position: absolute;
             color: black;
@@ -34,14 +42,13 @@
             border-radius: 3px;
             font-size: 14px;
         }
-        .level2>li {
+        .active>li {
+            display: block;
             float: left;
             text-align: center;
             margin: 5px 30px 5px 20px;
         }
-        .active {
-            
-        }
+
 
     </style>
 </head>
@@ -56,6 +63,7 @@
                 <li>白金</li>
             </ul>
         珠宝玉器
+            <span>></span>
         </li>
         <li>
             <ul class="level2">
@@ -66,7 +74,7 @@
                 <li>翡翠</li>
                 <li>珍珠</li>
             </ul>
-        珠宝玉器
+        珠宝玉器<span>></span>
         </li>
         <li>
             <ul class="level2">
@@ -75,7 +83,7 @@
                 <li>黄金</li>
                 <li>白金</li>
             </ul>
-       珠宝玉器
+       珠宝玉器<span>></span>
         </li>
         <li>
             <ul class="level2">
@@ -86,7 +94,7 @@
                 <li>翡翠</li>
                 <li>珍珠</li>
             </ul>
-        珠宝玉器
+        珠宝玉器<span>></span>
         </li>
         <li>
             <ul class="level2">
@@ -95,13 +103,18 @@
                 <li>黄金</li>
                 <li>白金</li>
             </ul>
-        珠宝玉器
+        珠宝玉器<span>></span>
         </li>
     </ul>
 
 <script src="jquery/jquery-3.2.1.js"></script>
 <script>
-
+  $(".level1").on("mouseover","li",function(){
+      $(this).find(".level2").addClass("active")
+  });
+  $(".level1").on("mouseout","li",function(){
+      $(this).find(".level2").removeClass("active")
+  })
 </script>
 </body>
 </html>
