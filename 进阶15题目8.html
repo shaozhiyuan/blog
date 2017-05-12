@@ -37,21 +37,33 @@
 <script src="jquery/jquery-3.2.1.js"></script>
 <script>
     var page = 1;
-    $.ajax({
-        url:"getNews",
-        method: 'GET',
-        data: {pageIndex: 'page',
-            length: 5
+    var isLoad = true;
+    $(".btn").on("click",function () {
+        if(isLoad){
+            getNew();
+        }else {
+            return;
         }
-    }).done(function (e) {
-        $('ul').append(getNew(e))
-        page += 5;
     });
     function getNew() {
-        $.each(e,function(){
-            $("ul").append("<li>"+e+"</li>")
+        isLoad = false;
+        $.ajax({
+            url:"getNews",
+            dataType: 'json',
+            method: 'GET',
+            data: {pageIndex: 'page',
+                length: 5
+            }
+        }).done(function (e) {
+            $.each(e,function(){
+                $("ul").append("<li>"+e+"</li>")
+            });
+            page += 5;
+            isLoad = true;
         });
     }
+
+
 </script>
 </body>
 </html>
