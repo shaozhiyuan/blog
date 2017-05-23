@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        #news {
+            width: 1000px;
+            margin:0 auto;
+        }
+        #news ul {
+            position: relative;
+        }
+        #news li {
+            position: absolute;
+            float: left;
+            list-style: none;
+            width: 250px;
+            border: 1px solid #000;
+            padding: 10px;
+            margin: 10px;
+        }
+        #news img {
+            width: 230px;
+        }
+        #news h4 {
+            border-bottom: 1px solid rgba(0,0,0,0.4);
+            line-height: 35px;
+        }
+        #news p {
+            font-size: 14px;
+            color: rgba(0,0,0,0.7);
+            margin: 10px 0;
+        }
+        #news .load {
+            visibility: hidden;
+        }
+
+    </style>
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="news">
+    <ul>
+        <!--<li>-->
+            <!--<a href="">-->
+                <!--<img src="http://s.img.mix.sina.com.cn/auto/resize?img=http%3A%2F%2Fwww.sinaimg.cn%2Fdy%2Fslidenews%2F5_img%2F2016_09%2F453_75615_657883.jpg&size=250_0" alt="">-->
+            <!--</a>-->
+            <!--<h4>标题</h4>-->
+            <!--<p>当地时间2016年3月1日，在东部与亲俄武装作战中受伤的乌克兰士兵接受海豚治疗。</p>-->
+        <!--</li>-->
+    </ul>
+    <div class="load">我是看不见的</div>
+</div>
+<script>
+    var pageCount = 10;
+    var curPage = 1;
+    var isLoad = true;
+    getData();
+    $(window).on("scroll",function () {
+        if(isShow()){
+            getData();
+        }
+    });
+    function isShow() {
+        var windowHeight = $(window).height();
+        var scrollTop = $(window).scrollTop();
+        var top = $(".load").offset().top;
+        console.log(top);
+        if( windowHeight + scrollTop>top && scrollTop<top+$(".load").height() &&isLoad){
+            return true
+        }
+    }
+    //获取数据
+    function getData() {
+        isLoad = false;
+        $.ajax({
+            url: 'http://platform.sina.com.cn/slide/album_tech',
+            dataType: 'jsonp',
+            jsonp:"jsoncallback",
+            data: {
+                app_key: '1271687855',
+                num: pageCount,
+                page: curPage
+            }
+        }).done(function(ret){
+            if(ret && ret.status && ret.status.code === "0"){
+                callback(ret.data);
+                console.log(ret.data);//如果数据没问题，那么生成节点并摆放好位置
+                curPage++;
+                isShow();
+            }else{
+                console.log('get error data');
+            }
+            isLoad=true;
+        });
+    }
+    //append数据
+    function callback(data) {
+        var itemArr = [];
+        for (var i = 0; i<data.length; i++){
+            itemArr[i]=0;
+        }
+        var html = "";
+        $.each(data,function () {
+             html += '<li>';
+             html += '<a href="'+this.url+'">';
+             html += '<img src="'+this.img_url+'" alt="">';
+             html += '</a>';
+             html += '<h4>'+this.short_name+'</h4>';
+             html += '<p>'+this.short_intro+'</p></li>';
+        });
+        $('ul').append(html);
+        waterfall();
+    }
+    //瀑布流布局
+
+    function waterfall() {
+        var clientWidth = $("#news").width();
+        var len = parseInt(clientWidth/$("li").outerWidth(true));
+        console.log(len);
+        var aLi = [];
+        for (var i = 0; i < len; i++){
+            aLi[i] = 0;
+        }
+        $("li").each(function () {
+            console.log(1);
+            var min = Math.min.apply(null,aLi);
+            var index = aLi.indexOf(min);
+            $(this).css({
+                left: index*$(this).outerWidth(true),
+                top: aLi[index]
+            });
+            aLi[index] += $(this).outerHeight(true);
+            console.log(aLi);
+            $("ul").css('height',aLi[index]);
+        });
+
+    }
+</script>
+</body>
+</html>

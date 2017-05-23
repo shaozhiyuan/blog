@@ -39,13 +39,14 @@
         #scroll {
             height: 70px;
             background-color: rgba(0,0,0,0.4);
-            position: fixed;
             width: 100%;
+            position: fixed;
+            z-index: 10;
         }
         #scroll img{
             height: 70px;
             width: 170px;
-            margin-left: 100px;
+            margin-left: -600px;
         }
         .navigation {
             float: right;
@@ -61,12 +62,7 @@
         }
         #header {
             height: 100%;
-            background-image: url(qiyeimg/9ad343daa1e1e50ae239a2f1f78ca2f6.png);
-            background-position: center center;
-            -webkit-background-size: cover;
-            background-size:cover;
             text-align: center;
-            padding-top: 20%;
         }
         .center {
             width: 800px;
@@ -87,6 +83,66 @@
         }
         .next:hover {
             background-color: #4750ee;
+        }
+
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .carousel .img-ct {
+            position: absolute;
+        }
+        .carousel .img-ct img {
+            width: 1349px;
+        }
+        .carousel .img-ct li {
+            float: left;
+        }
+        .carousel .btn {
+            position: absolute;
+            display: block;
+            background-color: rgba(0,0,0,0.5);
+            width: 30px;
+            height: 60px;
+            border-radius: 3px;
+            line-height:60px;
+            font-size: 20px;
+            text-align: center;
+            top: 50%;
+            transform: translate(0,-50%);
+            color: white;
+        }
+        .carousel .btn:hover  {
+            background-color: rgba(0,0,0,0.8);
+        }
+        .carousel .btn-pre {
+            margin-left: 30px;
+        }
+        .carousel .btn-next {
+            right: 30px;
+        }
+        .carousel .white-ct {
+            position: absolute;
+            bottom: 50px;
+            left: 30px;
+            right: 30px;
+            text-align: center;
+        }
+        .carousel .white {
+            display: inline-block;
+        }
+        .carousel .white li {
+            width: 40px;
+            height: 12px;
+            display: inline-block;
+            background-color: white;
+            border-radius: 6px;
+            margin-left: 10px;
+        }
+        .carousel .white .active {
+            background-color: #666;
         }
         #header p {
             font-size: 50px;
@@ -114,16 +170,22 @@
             float: left;
             padding: 50px;
         }
-
         #photo {
             text-align: center;
-            padding-top: 130px;
+            padding-top: 30px;
             background-color: #eaeaea;
             padding-bottom: 80px;
         }
         #photo ul {
-            padding: 30px;
+            padding: 10px 30px 80px 30px;
         }
+        .img {
+            position: relative;
+        }
+        #photo img:hover {
+            opacity: 0.3;
+        }
+
         #photo li {
             width: 33.3%;
             height: 320px;
@@ -131,64 +193,68 @@
             padding: 20px;
             margin-top: 40px;
         }
-        #photo ul li:nth-child(1) .img {
-            width: 100%;
-            height: 240px;
-            background-image: url("qiyeimg/1.png");
-            background-size: cover;
-        }
-        #photo ul li:nth-child(2) .img {
-            width: 100%;
-            height: 240px;
-            background-image: url("qiyeimg/2.png");
-            background-size: cover;
-        }
-        #photo ul li:nth-child(3) .img {
-            width: 100%;
-            height: 240px;
-            background-image: url("qiyeimg/3.png");
-            background-size: cover;
-        }
-        #photo ul li:nth-child(4) .img {
-            width: 100%;
-            height: 240px;
-            background-image: url("qiyeimg/4.png");
-            background-size: cover;
-        }
-        #photo ul li:nth-child(5) .img {
-            width: 100%;
-            height: 240px;
-            background-image: url("qiyeimg/5.png");
-            background-size: cover;
-        }
-        #photo ul li:nth-child(6) .img {
-            width: 100%;
-            height: 240px;
-            background-image: url("qiyeimg/6.png");
-            background-size: cover;
-        }
         .photo-text {
             padding: 20px;
             background-color: white;
         }
-        .img {
-            background-color: yellow;
+        #photo img {
+            height: 240px;
+            width: 100%;
         }
         .img p {
+            position: absolute;
             font-size:90px;
-            padding-top: 50px;
-            color: white;
+            color: blueviolet;
             height: 240px;
-            background-color: rgba(0,0,0,0.5);
+            top: 50px;
+            left: 160px;
             display: none;
         }
-        .img:hover p{
-            display: block;
+        #newsct {
+            padding: 100px;
+            background-color: #beb3a2;
         }
-        .img:hover {
-            opacity: 0.5;
+        #news {
+            width: 860px;
+            margin:0 auto;
         }
-
+        #news ul {
+            position: relative;
+        }
+        #news li {
+            position: absolute;
+            float: left;
+            list-style: none;
+            width: 250px;
+            border: 1px solid #000;
+            padding: 10px;
+            margin: 10px;
+        }
+        #news img {
+            width: 230px;
+        }
+        #news h4 {
+            border-bottom: 1px solid rgba(0,0,0,0.4);
+            line-height: 35px;
+        }
+        #news p {
+            font-size: 14px;
+            color: rgba(0,0,0,0.7);
+            margin: 10px 0;
+        }
+        #news .load {
+            background-color: orange;
+            margin: 0 auto;
+            width: 120px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        #news .load:hover {
+            background-color: blue;
+        }
         #introduction {
             text-align: center;
             padding: 100px;
@@ -231,7 +297,6 @@
         .herointroduce:nth-child(2n-1) {
             text-align: right;
         }
-
         #introduction li:nth-child(2n) {
             position: relative;
             left: 153px;
@@ -298,8 +363,7 @@
             padding: 20px;
             box-shadow: 0 3px 3px rgba(0,0,0,0.4);
         }
-
-        .btn {
+        #register .btn {
             padding: 20px 40px;
             margin-top: 50px;
             background-color: #7d78ff;
@@ -309,23 +373,70 @@
             color: white;
             display: inline-block;
         }
-        .btn:hover {
+        #register .btn:hover {
             background-color: #ffe041;
         }
+        .gotop {
+            position: fixed;
+            display: block;
+            width: 120px;
+            height: 50px;
+            background-color: #615e8b;
+            border-radius: 3px;
+            line-height:50px;
+            text-align: center;
+            z-index: 999;
+            bottom: 20px;
+            right: 20px;
+            cursor: pointer;
+            transition: all 0.5s;
+            display: none;
+        }
+        .gotop:hover {
+            background-color: #afaafd;
+        }
     </style>
+
 </head>
 <body>
-<div id="scroll">
-    <a href="#scroll"><img src="qiyeimg/logo.png" alt=""></a>
-    <div class="navigation">
-        <a href="#services">小logo</a>/
-        <a href="#photo">英雄图片</a>/
-        <a href="#introduction">英雄介绍</a>/
-        <a href="#player">职业玩家</a>/
-        <a href="#register">注册账号</a>
-    </div>
-</div>
+<a href="" class="gotop">回到顶部</a>
 <div id="header">
+    <div id="scroll">
+        <a href="#scroll"><img src="qiyeimg/logo.png" alt=""></a>
+        <div class="navigation">
+            <a href="#services">小logo</a>/
+            <a href="#photo">英雄图片</a>/
+            <a href="#introduction">英雄介绍</a>/
+            <a href="#player">职业玩家</a>/
+            <a href="#register">注册账号</a>
+        </div>
+    </div>
+    <div class="carousel">
+        <ul class="img-ct clearfix">
+            <li data-page="0">
+               <img src="qiyeimg/9ad343daa1e1e50ae239a2f1f78ca2f6.png">
+            </li>
+            <li data-page="1">
+                <img src="qiyeimg/111.jpg">
+            </li>
+            <li data-page="2">
+               <img src="qiyeimg/222.jpg">
+            </li>
+            <li data-page="3">
+               <img src="qiyeimg/333.jpg">
+            </li>
+        </ul>
+        <a href="" class="btn btn-pre">&lt;</a>
+        <a href="" class="btn btn-next">&gt;</a>
+        <div class="white-ct ">
+            <ul class="white">
+                <li class="active"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
     <div class="center">
         <p>welcome to my home</p>
         <h1>NICE TO MEET YOU</h1>
@@ -352,9 +463,13 @@
         </div>
 </div>
 <div id="photo">
+    <h1>英雄图片</h1>
+    <p>HERO PHOTO</p>
     <ul class="clearfix">
         <li>
             <div class="img">
+                <div class="overlay"></div>
+                <img src="qiyeimg/1.png" data-src="" alt="">
                 <p>+</p>
             </div>
             <div class="photo-text">
@@ -364,6 +479,7 @@
         </li>
         <li >
             <div class="img">
+                <img src="qiyeimg/2.png" data-src="" alt="">
                 <p>+</p>
             </div>
             <div class="photo-text">
@@ -373,6 +489,7 @@
         </li>
         <li>
             <div class="img">
+                <img src="qiyeimg/3.png" data-src="" alt="">
                 <p>+</p>
             </div>
             <div class="photo-text">
@@ -382,6 +499,7 @@
         </li>
         <li>
             <div class="img">
+                <img src="qiyeimg/4.png" data-src="" alt="">
                 <p>+</p>
             </div>
             <div class="photo-text">
@@ -391,6 +509,7 @@
         </li>
         <li>
             <div class="img">
+                <img src="qiyeimg/5.png" data-src="" alt="">
                 <p>+</p>
             </div>
             <div class="photo-text">
@@ -400,6 +519,7 @@
         </li>
         <li>
             <div class="img">
+                <img src="qiyeimg/6.png" data-src="" alt="">
                 <p>+</p>
             </div>
             <div class="photo-text">
@@ -408,6 +528,11 @@
             </div>
         </li>
     </ul>
+</div>
+<div id="newsct">
+    <div id="news">
+        <div class="load">点我有新闻哦</div>
+    </div>
 </div>
 <div id="introduction">
     <h1>ABOUT</h1>
@@ -485,5 +610,6 @@
         <div><a href="#header" class="btn">SEND MESSAGE</a></div>
     </form>
 </div>
+<script src="module/require.js" data-main="dist/main-built.js"></script>
 </body>
 </html>

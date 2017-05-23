@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .content {
+            position: relative;
+        }
+        .item {
+            width: 200px;
+            margin: 10px;
+            position: absolute;
+            transition: all 0.5s;
+        }
+        .h1 {
+            height: 200px;
+            background-color: red;
+        }
+        .h2 {
+            height: 300px;
+            background-color: blue;
+        }
+        .h3 {
+            height: 400px;
+            background-color: green;
+        }
+        .h4 {
+            height: 450px;
+            background-color: orangered;
+        }
+    </style>
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="content">
+    <div class="item h1"></div>
+    <div class="item h2"></div>
+    <div class="item h3"></div>
+    <div class="item h4"></div>
+    <div class="item h1"></div>
+    <div class="item h2"></div>
+    <div class="item h3"></div>
+    <div class="item h4"></div>
+    <div class="item h1"></div>
+    <div class="item h2"></div>
+    <div class="item h3"></div>
+    <div class="item h4"></div>
+    <div class="item h1"></div>
+    <div class="item h2"></div>
+    <div class="item h3"></div>
+    <div class="item h4"></div>
+    <div class="item h1"></div>
+    <div class="item h2"></div>
+    <div class="item h3"></div>
+    <div class="item h4"></div>
+</div>
+<script>
+
+
+   var waterFall = (function () {
+       function init() {
+           waterfall()
+           $(window).resize(function () {
+               waterfall()
+           });
+       }
+       function waterfall() {
+           var boxLength = parseInt($(".content").width()/$(".item").width());
+           var arr = [];
+           for (var i = 0; i<boxLength; i++){
+               arr[i] = 0;
+           }
+           $(".item").each(function () {
+               var minValue = Math.min.apply(null,arr);
+               var minIndex = arr.indexOf(minValue);
+               $(this).css({
+                   top: arr[minIndex],
+                   left: $(this).outerWidth(true)*minIndex
+               });
+               arr[minIndex] += $(this).outerHeight(true);
+               console.log(arr);
+           });
+       }
+       return {
+           init: init
+       }
+   })();
+    waterFall.init();
+
+</script>
+</body>
+</html>

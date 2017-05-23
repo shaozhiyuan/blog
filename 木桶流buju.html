@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        #ct {
+            width: 1200px;
+            margin-bottom: 10px;
+            margin: 0 auto;
+        }
+        .row {
+            margin-top: 10px;
+        }
+        .row::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .img-ct {
+            float: left;
+        }
+    </style>
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="ct" >
+</div>
+<script>
+    function getImg(number) {
+        var width,height,color,urls=[];
+        for (var i = 0; i < number; i++){
+            color = Math.random().toString(16).substring(2,8);
+            width = parseInt(Math.random()*100+50);
+            height = parseInt(Math.random()*30+50);
+            urls.push("http://placehold.it/" + width + "x" + height + "/" + color + "/fff")
+        }
+        return urls
+    }
+    var imgs = getImg(50);
+    $.each(imgs,function (i,val) {
+        var img = new Image();
+        img.src = val;
+        img.onload = function () {
+            var info = {
+                target: img,
+                width: 100*(img.width/img.height),
+                height: 100
+            };
+            render(info)
+    }});
+    var rowList = [];
+
+    function render(info) {
+        var clientWidth = $("#ct").width();
+        var rowWidth = 0;
+        var newHeight = 0;
+        rowList.push(info);
+//        for(var i = 0; i < rowList.length; i++){
+//            rowWidth += info.width;
+//            if(rowWidth>clientWidth){
+//                rowList.pop();
+//                rowWidth = rowWidth-info.width;
+//                console.log(rowList);
+//
+//                newHeight=100*clientWidth/rowWidth;
+//                layout(newHeight);
+//                rowList = [];
+//                rowList.push(info);
+//            }
+//        }
+//    }
+        $.each(rowList,function(idx, info){
+            rowWidth += info.width;
+            if(rowWidth  > clientWidth ){
+                rowList.pop();
+                rowWidth = rowWidth - info.width;
+                console.log(rowList);
+                newHeight = clientWidth * 100 / rowWidth;
+                layout(newHeight);
+                rowList = [];
+                rowList.push(info);
+            }
+        });}
+    function layout(newHeight) {
+        var $row = $('<div class="row"></div>');
+        $.each(rowList, function (i, value) {
+            var $imgct = $('<div class="img-ct"></div>')
+            $img = $(rowList[i].target);
+            $img.height(newHeight);
+            $imgct.append($img);
+            $row.append($imgct);
+        });
+        $("#ct").append($row);
+    }
+</script>
+</body>
+</html>

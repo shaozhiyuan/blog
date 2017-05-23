@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        li,ul,a {
+            list-style: none;
+            text-decoration: none;
+        }
+        .clearfix::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .wrap {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            margin: 30px;
+            overflow: hidden;
+        }
+        .img-ct {
+            position: absolute;
+        }
+        .img-ct img {
+            width: 300px;
+            height: 200px;
+        }
+        .img-ct li {
+            float: left;
+        }
+        .btn {
+            position: absolute;
+            display: block;
+            background-color: rgba(0,0,0,0.5);
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 15px;
+            top: 50%;
+            transform: translate(0,-50%);
+            color: white;
+        }
+        .btn-pre {
+            margin-left: 10px;
+        }
+        .btn-next {
+            right: 10px;
+        }
+      .white-ct {
+          position: absolute;
+          bottom: 10px;
+          left: 10px;
+          right: 10px;
+          text-align: center;
+      }
+        .white {
+            display: inline-block;
+        }
+        .white li {
+            width: 20px;
+            height: 6px;
+            display: inline-block;
+            background-color: white;
+            border-radius: 4px;
+            margin-left: 5px;
+        }
+        .white .active {
+            background-color: #666;
+        }
+
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <ul class="img-ct clearfix">
+        <li data-page="0"><a href=""><img src="http://cdn.jirengu.com/book.jirengu.com/img/26.jpg"></a></li>
+        <li data-page="1"><a href=""><img src="http://cdn.jirengu.com/book.jirengu.com/img/25.jpg"></a></li>
+        <li data-page="2"><a href=""><img src="http://cdn.jirengu.com/book.jirengu.com/img/24.jpg"></a></li>
+        <li data-page="3"><a href=""><img src="http://cdn.jirengu.com/book.jirengu.com/img/23.jpg"></a></li>
+    </ul>
+    <a href="" class="btn btn-pre">&lt;</a>
+    <a href="" class="btn btn-next">&gt;</a>
+    <div class="white-ct ">
+        <ul class="white">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</div>
+<script src="jquery/jquery-3.2.1.js"></script>
+<script>
+    var firstLi = $(".img-ct").children().first().clone();
+    var lastLi = $(".img-ct").children().last().clone();
+    var pageIndex = 0;
+    var imgLength = $(".img-ct li").length;
+    var isRoll = true;
+    $(".img-ct").prepend(lastLi);
+    $(".img-ct").append(firstLi);
+    var len = $(".img-ct li").length*300+"px";
+    $(".img-ct").css("width",len);
+    $(".img-ct").css("left","-300px");
+
+    $(".btn-next").on("click",function (e) {
+        e.preventDefault();
+        if(isRoll){
+            nextBtn(1);
+        }
+    });
+    $(".btn-pre").on("click",function (e) {
+        e.preventDefault();
+        if(isRoll){
+            preBtn(1);
+        }
+    });
+    $(".white").on("click","li",function () {
+       var index = $(this).index();
+       var number = index - pageIndex;
+       console.log(index);
+       if(number>0){
+           nextBtn(number);
+       }else if(number<0){
+           preBtn(-number);
+       }else{
+           console.log("gg")
+       }
+        $(".white li").removeClass("active");
+        $(".white li").eq(index).addClass("active");
+    });
+    function nextBtn(n) {
+        isRoll = false;
+        $(".img-ct").animate({left: "-="+n*$("img").width()},function () {
+            pageIndex = pageIndex+n;
+            if(pageIndex===imgLength){
+                $(".img-ct").css("left","-300px")
+                pageIndex = 0;
+            }
+            $(".white li").removeClass("active");
+            $(".white li").eq(pageIndex).addClass("active");
+            isRoll = true;
+        })
+    }
+    function preBtn(n) {
+        isRoll = false;
+        $(".img-ct").animate({left: "+="+n*$("img").width()},function () {
+            pageIndex = pageIndex-n;
+            if(pageIndex===-1){
+                $(".img-ct").css("left",(-imgLength*300)+"px")
+                pageIndex = 3;
+            }
+            $(".white li").removeClass("active");
+            $(".white li").eq(pageIndex).addClass("active");
+            isRoll = true;
+        })
+    }
+
+</script>
+</body>
+</html>
