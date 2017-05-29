@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft Yahei";
+            box-sizing: border-box;
+            /*text-align: center;*/
+        }
+        li {
+            list-style: none;
+        }
+        a {
+            text-decoration: none;
+        }
+        .clearfix::after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .clearfix {
+            *zoom: 1;
+        }
+        html,body {
+            height: 100%;
+        }
+        @font-face {
+            font-family: 'iconfont';  /* project id 273712 */
+            src: url('https://at.alicdn.com/t/font_oxhr5rvv66gbke29.eot');
+            src: url('https://at.alicdn.com/t/font_oxhr5rvv66gbke29.eot?#iefix') format('embedded-opentype'),
+            url('https://at.alicdn.com/t/font_oxhr5rvv66gbke29.woff') format('woff'),
+            url('https://at.alicdn.com/t/font_oxhr5rvv66gbke29.ttf') format('truetype'),
+            url('https://at.alicdn.com/t/font_oxhr5rvv66gbke29.svg#iconfont') format('svg');
+        }
+        #scroll {
+            height: 70px;
+            background-color: rgba(0,0,0,0.4);
+            width: 100%;
+            position: fixed;
+            z-index: 10;
+        }
+        #scroll img{
+            height: 70px;
+            width: 170px;
+            margin-left: -600px;
+        }
+        .navigation {
+            float: right;
+            font-size: 20px;
+            margin-right: 30px;
+            padding-top: 30px;
+        }
+        .navigation a {
+            color: #38fc0d;
+        }
+        .navigation a:hover {
+            color: blue;
+        }
+        #header {
+            height: 100%;
+            text-align: center;
+        }
+        .center {
+            width: 800px;
+            margin:0 auto;
+            position: absolute;
+            left:50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+        }
+        .next {
+            display: inline-block;
+            background-color: #8185ee;
+            padding: 20px 30px;
+            border-radius: 5px;
+            margin-top: 60px;
+            color: white;
+            transition: background-color 0.5s;
+        }
+        .next:hover {
+            background-color: #4750ee;
+        }
+
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .carousel .img-ct {
+            position: absolute;
+        }
+        .carousel .img-ct img {
+            width: 1349px;
+        }
+        .carousel .img-ct li {
+            float: left;
+        }
+        .carousel .btn {
+            position: absolute;
+            display: block;
+            background-color: rgba(0,0,0,0.5);
+            width: 30px;
+            height: 60px;
+            border-radius: 3px;
+            line-height:60px;
+            font-size: 20px;
+            text-align: center;
+            top: 50%;
+            transform: translate(0,-50%);
+            color: white;
+        }
+        .carousel .btn:hover  {
+            background-color: rgba(0,0,0,0.8);
+        }
+        .carousel .btn-pre {
+            margin-left: 30px;
+        }
+        .carousel .btn-next {
+            right: 30px;
+        }
+        .carousel .white-ct {
+            position: absolute;
+            bottom: 50px;
+            left: 30px;
+            right: 30px;
+            text-align: center;
+        }
+        .carousel .white {
+            display: inline-block;
+        }
+        .carousel .white li {
+            width: 40px;
+            height: 12px;
+            display: inline-block;
+            background-color: white;
+            border-radius: 6px;
+            margin-left: 10px;
+        }
+        .carousel .white .active {
+            background-color: #666;
+        }
+        #header p {
+            font-size: 50px;
+            font-family:"Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+        }
+        #header h1 {
+            font-size: 70px;
+        }
+        #services {
+            padding-top: 150px;
+            text-align: center;
+            height: 700px;
+            background-color: #fff;
+        }
+        h1 {
+            margin: 20px;
+        }
+        .icon {
+            font-family:"iconfont" !important;
+            font-size: 80px;
+            color: #1deeff;
+        }
+        .iconbox {
+            width: 33.3%;
+            float: left;
+            padding: 50px;
+        }
+        #photo {
+            text-align: center;
+            padding-top: 30px;
+            background-color: #eaeaea;
+            padding-bottom: 80px;
+        }
+        #photo ul {
+            padding: 10px 30px 80px 30px;
+        }
+        .img {
+            position: relative;
+        }
+        #photo img:hover {
+            opacity: 0.3;
+        }
+
+        #photo li {
+            width: 33.3%;
+            height: 320px;
+            float: left;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        .photo-text {
+            padding: 20px;
+            background-color: white;
+        }
+        #photo img {
+            height: 240px;
+            width: 100%;
+        }
+        .img p {
+            position: absolute;
+            font-size:90px;
+            color: blueviolet;
+            height: 240px;
+            top: 50px;
+            left: 160px;
+            display: none;
+        }
+        #newsct {
+            padding: 100px;
+            background-color: #beb3a2;
+        }
+        #news {
+            width: 860px;
+            margin:0 auto;
+        }
+        #news ul {
+            position: relative;
+        }
+        #news li {
+            position: absolute;
+            float: left;
+            list-style: none;
+            width: 250px;
+            border: 1px solid #000;
+            padding: 10px;
+            margin: 10px;
+        }
+        #news img {
+            width: 230px;
+        }
+        #news h4 {
+            border-bottom: 1px solid rgba(0,0,0,0.4);
+            line-height: 35px;
+        }
+        #news p {
+            font-size: 14px;
+            color: rgba(0,0,0,0.7);
+            margin: 10px 0;
+        }
+        #news .load {
+            background-color: orange;
+            margin: 0 auto;
+            width: 120px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        #news .load:hover {
+            background-color: blue;
+        }
+        #introduction {
+            text-align: center;
+            padding: 100px;
+        }
+        .wire {
+            width: 112px;
+            height: 112px;
+            border-radius: 50%;
+            border: 6px solid #d3d3d3;
+            display: inline-block;
+            margin:50px 30px;
+        }
+        .wire::after {
+            content: "";
+            display: block;
+            width: 2px;
+            height: 100px;
+            background-color: #cacaca;
+            margin: 0 auto;
+        }
+        .end {
+            width: 112px;
+            height: 112px;
+            border-radius: 50%;
+            border: 6px solid #d3d3d3;
+            display: inline-block;
+            margin:50px 30px;
+            background-color: yellow;
+            font-size: 18px;
+            color: white;
+            padding-top: 15px;
+        }
+        .herointroduce {
+            width: 300px;
+            display: inline-block;
+        }
+        .herointroduce:nth-child(2n) {
+            text-align: left;
+        }
+        .herointroduce:nth-child(2n-1) {
+            text-align: right;
+        }
+        #introduction li:nth-child(2n) {
+            position: relative;
+            left: 153px;
+        }
+        #introduction li:nth-child(1) {
+            position: relative;
+            left: -153px;
+        }
+        #introduction li:nth-child(3) {
+            position: relative;
+            left: -153px;
+        }
+        #player {
+            padding:100px;
+            text-align: center;
+            background-color: #dadada;
+        }
+        .player-wrap {
+            width: 300px;
+            margin: 20px;
+            margin-top: 50px;
+            display: inline-block;
+            vertical-align: top;
+        }
+        #player>p:last-child {
+            width: 800px;
+            margin:0 auto;
+            margin-top: 40px;
+            color: #7b7b7b;
+        }
+        #register {
+            padding:100px;
+            text-align: center;
+            background-image: url(qiyeimg/666.png);
+            -webkit-background-size:cover;
+            background-size:cover;
+        }
+        .register-wrap {
+            width: 50%;
+            margin-top: 50px;
+        }
+        .rin {
+            float: left;
+        }
+        .text {
+            width: 500px;
+            height: 50px;
+            border-radius: 5px;
+            font-size: 20px;
+            margin-bottom: 30px;
+            padding: 10px;
+            box-shadow: 0 3px 3px rgba(0,0,0,0.4);
+        }
+        .lin {
+            float: right;
+        }
+        textarea {
+            height: 210px;
+            width: 500px;
+            border-radius: 5px;
+            font-size: 20px;
+            margin-bottom: 26px;
+            display: inline-block;
+            padding: 20px;
+            box-shadow: 0 3px 3px rgba(0,0,0,0.4);
+        }
+        #register .btn {
+            padding: 20px 40px;
+            margin-top: 50px;
+            background-color: #7d78ff;
+            border-radius: 5px placeholder="your name" ;
+            border: none;
+            font-size: 20px;
+            color: white;
+            display: inline-block;
+        }
+        #register .btn:hover {
+            background-color: #ffe041;
+        }
+        .gotop {
+            position: fixed;
+            width: 120px;
+            height: 50px;
+            background-color: #615e8b;
+            border-radius: 3px;
+            line-height:50px;
+            text-align: center;
+            z-index: 999;
+            bottom: 20px;
+            right: 20px;
+            cursor: pointer;
+            transition: all 0.5s;
+            display: none;
+            color: white;
+        }
+        .gotop:hover {
+            background-color: #afaafd;
+        }
+    </style>
+
+</head>
+<body>
+<a href="" class="gotop">回到顶部</a>
+<div id="header">
+    <div id="scroll">
+        <a href="#scroll"><img src="qiyeimg/logo.png" alt=""></a>
+        <div class="navigation">
+            <a href="#services">小logo</a>/
+            <a href="#photo">英雄图片</a>/
+            <a href="#introduction">英雄介绍</a>/
+            <a href="#player">职业玩家</a>/
+            <a href="#register">注册账号</a>
+        </div>
+    </div>
+    <div class="carousel">
+        <ul class="img-ct clearfix">
+            <li data-page="0">
+                <img src="qiyeimg/9ad343daa1e1e50ae239a2f1f78ca2f6.png">
+            </li>
+            <li data-page="1">
+                <img src="qiyeimg/111.jpg">
+            </li>
+            <li data-page="2">
+                <img src="qiyeimg/222.jpg">
+            </li>
+            <li data-page="3">
+                <img src="qiyeimg/333.jpg">
+            </li>
+        </ul>
+        <a href="" class="btn btn-pre">&lt;</a>
+        <a href="" class="btn btn-next">&gt;</a>
+        <div class="white-ct ">
+            <ul class="white">
+                <li class="active"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+    <div class="center">
+        <p>welcome to my home</p>
+        <h1>NICE TO MEET YOU</h1>
+        <a href="#services" class="next">NEXT COME ON</a>
+    </div>
+</div>
+<div id="services">
+    <h1>SERVICES</h1>
+    <p>Lorem ipsum dolor sit amet consectetur.</p>
+    <div class="iconbox">
+        <p class="icon">&#xe61f;</p>
+        <h2>E-Commerce</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+    </div>
+    <div class="iconbox">
+        <p class="icon">&#xe61e;</p>
+        <h2>E-Commerce</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+    </div>
+    <div class="iconbox">
+        <p class="icon">&#xe61d;</p>
+        <h2>E-Commerce</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+    </div>
+</div>
+<div id="photo">
+    <h1>英雄图片</h1>
+    <p>HERO PHOTO</p>
+    <ul class="clearfix">
+        <li>
+            <div class="img">
+                <div class="overlay"></div>
+                <img src="qiyeimg/1.png" data-src="" alt="">
+                <p>+</p>
+            </div>
+            <div class="photo-text">
+                <h2>瑞文</h2>
+                <p>断剑重铸之日，骑士归来之时</p>
+            </div>
+        </li>
+        <li >
+            <div class="img">
+                <img src="qiyeimg/2.png" data-src="" alt="">
+                <p>+</p>
+            </div>
+            <div class="photo-text">
+                <h2>瑞文</h2>
+                <p>断剑重铸之日，骑士归来之时</p>
+            </div>
+        </li>
+        <li>
+            <div class="img">
+                <img src="qiyeimg/3.png" data-src="" alt="">
+                <p>+</p>
+            </div>
+            <div class="photo-text">
+                <h2>瑞文</h2>
+                <p>断剑重铸之日，骑士归来之时</p>
+            </div>
+        </li>
+        <li>
+            <div class="img">
+                <img src="qiyeimg/4.png" data-src="" alt="">
+                <p>+</p>
+            </div>
+            <div class="photo-text">
+                <h2>瑞文</h2>
+                <p>断剑重铸之日，骑士归来之时</p>
+            </div>
+        </li>
+        <li>
+            <div class="img">
+                <img src="qiyeimg/5.png" data-src="" alt="">
+                <p>+</p>
+            </div>
+            <div class="photo-text">
+                <h2>瑞文</h2>
+                <p>断剑重铸之日，骑士归来之时</p>
+            </div>
+        </li>
+        <li>
+            <div class="img">
+                <img src="qiyeimg/6.png" data-src="" alt="">
+                <p>+</p>
+            </div>
+            <div class="photo-text">
+                <h2>瑞文</h2>
+                <p>断剑重铸之日，骑士归来之时</p>
+            </div>
+        </li>
+    </ul>
+</div>
+<div id="newsct">
+    <div id="news">
+        <div class="load">点我有新闻哦</div>
+    </div>
+</div>
+<div id="introduction">
+    <h1>ABOUT</h1>
+    <p>League of Legends</p>
+    <ul>
+        <li>
+            <div class="herointroduce">
+                <h2>拉克丝</h2>
+                <p>光辉女郎·拉克丝是《英雄联盟》中的英雄人物。她是一个超远程的法师，一般走位不失误，对方很难能抓住她，所以拉克丝可以纯粹地堆自己的法伤。由于很难死掉</p>
+            </div>
+            <div class="wire"><img src="qiyeimg/a.png" alt=""></div>
+        </li>
+        <li>
+            <div class="wire"><img src="qiyeimg/b.png" alt=""></div>
+            <div class="herointroduce">
+                <h2>安妮</h2>
+                <p>黑暗之女·安妮是竞技游戏《英雄联盟》中的英雄角色之一。在游戏中的职业是法师,通常以出现在中单位上,也能胜任辅助和上单位,是一个非常可爱且腹黑的小萝莉。</p>
+            </div>
+        </li>
+        <li>
+            <div class="herointroduce">
+                <h2>凯尔</h2>
+                <p>审判天使是竞技游戏《英雄联盟》中的英雄角色之一。审判天使凯尔，擅长远程魔法攻击，英雄后期非常强力，技能的全能型令其能胜任许多位置。</p>
+            </div>
+            <div class="wire"><img src="qiyeimg/c.png" alt=""></div>
+        </li>
+        <li>
+            <div class="wire"><img src="qiyeimg/d.png" alt=""></div>
+            <div class="herointroduce">
+                <h2>提莫</h2>
+                <p>迅捷斥候·提莫是竞技游戏《英雄联盟》中的一个英雄角色。他是负责瓦罗兰大陆的班德尔城安全的侦察兵首领，也是班德尔城最富盛名的特种部队之一“主舰斥候队”</p>
+            </div>
+        </li>
+        <li>
+            <div class="end"><strong>BE PART
+                OF OUR
+                STORY!</strong></div>
+        </li>
+    </ul>
+</div>
+<div id="player">
+    <h1>THEY ARE PRIZE FIGHT</h1>
+    <p>they are my idol</p>
+    <div class="player-wrap">
+        <img src="qiyeimg/weixiao.png" alt="">
+        <h2>微笑</h2>
+        <p>高学成，1992年6月18日出生，《英雄联盟》前职业选手。世界第一AD</p>
+    </div>
+    <div class="player-wrap">
+        <img src="qiyeimg/faker.png" alt="">
+        <h2>faker</h2>
+        <p>李相赫，ID：faker，绰号“大魔王”，司职《英雄联盟》中单，1996年5月7日出生于韩国，是韩国电子竞技俱乐部SKT T1英雄联盟分部的队员之一。</p>
+    </div>
+    <div class="player-wrap">
+        <img src="qiyeimg/bierseng.png" alt="">
+        <h2>比尔森</h2>
+        <p>比尔森Bjergsen资料 他是唯一一名在LCS中拿下两次五杀的选手,同时他也是世界上最强的中单之一。</p>
+    </div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
+</div>
+<div id="register">
+    <h1>CONTACT US</h1>
+    <p>Lorem ipsum dolor sit amet consectetur.</p>
+    <form action="">
+        <div class="clearfix">
+            <div class="register-wrap rin">
+                <input type="text" class="text" placeholder="your name">
+                <input type="text" class="text" placeholder="your name">
+                <input type="text" class="text" placeholder="your name">
+            </div>
+            <div class="register-wrap lin">
+                <textarea name="" id="" cols="30" rows="50" placeholder="your message"></textarea>
+            </div>
+        </div>
+        <div><a href="#header" class="btn">SEND MESSAGE</a></div>
+    </form>
+</div>
+<script src="./copy/dist/df4_main.js"></script>
+</body>
+</html>
