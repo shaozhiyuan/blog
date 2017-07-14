@@ -60,20 +60,7 @@
         var rowWidth = 0;
         var newHeight = 0;
         rowList.push(info);
-//        for(var i = 0; i < rowList.length; i++){
-//            rowWidth += info.width;
-//            if(rowWidth>clientWidth){
-//                rowList.pop();
-//                rowWidth = rowWidth-info.width;
-//                console.log(rowList);
-//
-//                newHeight=100*clientWidth/rowWidth;
-//                layout(newHeight);
-//                rowList = [];
-//                rowList.push(info);
-//            }
-//        }
-//    }
+
         $.each(rowList,function(idx, info){
             rowWidth += info.width;
             if(rowWidth  > clientWidth ){
